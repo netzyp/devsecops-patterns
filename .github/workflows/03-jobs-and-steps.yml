@@ -1,0 +1,27 @@
+name: Build -> Scan -> Report
+
+on:
+#Run on workflow dispatch to reduce noise
+    workflow_dispatch:
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Building
+              run: echo "Building"
+
+    scan:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Building
+              run: echo "Scanning"
+
+    report:
+        runs-on: ubuntu-latest
+        needs: scan
+        steps:
+            - name: Reporting
+              run: echo "Reporting"
