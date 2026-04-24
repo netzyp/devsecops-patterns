@@ -1,0 +1,16 @@
+name: Hello world workflow
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Welcome to the security pipelinee
+        run: echo "Hello World"
+    
