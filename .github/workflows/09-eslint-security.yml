@@ -18,6 +18,14 @@ jobs:
 
         -   name: Installing dependencies
             run: npm install eslint eslint-plugin-security --save-dev
+
+        -   name: Create ESLint config
+            run: |
+                cat > eslint.config.js << 'EOF'
+                const security = require("eslint-plugin-security");
+                module.exports = [security.configs.recommended]
+                EOF
+
         
         -   name: Running eslint
             run: npx eslint . --ext .js || true
