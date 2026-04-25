@@ -1,0 +1,23 @@
+name: eslint-security
+
+on:
+    workflow_dispatch:
+
+jobs:
+    eslint_security:
+        runs-on: ubuntu-latest
+
+        steps:
+        -   name: Checking out code
+            uses: actions/checkout@v4
+        
+        -   name: Setting up node
+            uses: actions/setup-node@v4
+            with:
+                node-version: 20
+
+        -   name: Installing dependencies
+            run: npm install eslint eslint-plugin-security --save-dev
+        
+        -   name: Running eslint
+            run: npx eslint . --ext .js || true
