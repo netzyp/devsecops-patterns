@@ -1,0 +1,19 @@
+name: Semgrep Scan
+
+on:
+    workflow_dispatch:
+
+jobs:
+    scan_code:
+        runs-on: ubuntu-latest
+        steps:
+        -   name: Checkout code
+            uses: actions/checkout@v4
+
+        -   name: Scan code
+            uses: returntocorp/semgrep-action@v1
+            with:
+              config: p/security-audit
+            env:
+              SEMGREP_APP_TOKEN: ${{secrets.SEMGREP_APP_TOKEN}}
+    
