@@ -1,0 +1,12 @@
+name: reusable workflows
+
+on:
+    workflow_call:
+
+jobs:
+    workflow_caller:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Calling workflows 05-caller
+              run: echo 'I was called by another workflow'
