@@ -1,0 +1,33 @@
+name: CodeQL
+
+on:
+  workflow_dispatch:
+
+
+  
+
+jobs:
+  codeql_scan:
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Initialise codeql
+      uses: github/codeql-action/init@v3
+      with:
+        languages: python
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    - name: Analyse
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: /language:python
+
