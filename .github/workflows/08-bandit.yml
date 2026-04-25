@@ -1,0 +1,28 @@
+name: bandit_scan
+
+on: 
+    workflow_dispatch:
+
+
+jobs:
+    Bandit_code_scan:
+        runs-on: ubuntu-latest
+
+        steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
+
+        -   name: Set up python
+            uses: actions/setup-python@v5
+            with:
+                python-version: 3.11
+        -   name: Install bandit
+            run: pip install bandit
+        -   name: Run bandit
+            run: bandit -r . -f json -o bandit-report.json || true
+        -   name: upload bandit-report.json
+            uses: actions/upload-artifact@v4
+            with:
+                name: bandit-report
+                path: bandit-report.json
+            
